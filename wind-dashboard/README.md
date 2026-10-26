@@ -4,7 +4,7 @@ Windwise is a React and FastAPI dashboard for exploring historical wind-generati
 
 Choose a decision date in January 2026 and an information cutoff. The application selects the forecasts available by that moment for the next delivery day, compares matching target timestamps, and explains the daily results.
 
-Quick navigation: [Access](#access-the-project) · [Local setup](#run-locally) · [Docker](#run-with-docker) · [Architecture](#architecture) · [Calculations](#accuracy-calculations) · [File structure](#files-and-directories) · [Deployment](#deployment-preparation) · [Submission](#assignment-submission).
+Quick navigation: [Access](#access-the-project) · [Local setup](#run-locally) · [Docker](#run-with-docker) · [Architecture](#architecture) · [Calculations](#accuracy-calculations) · [File structure](#files-and-directories) · [Deployment](#deployment-preparation).
 
 ## Access the project
 
@@ -434,19 +434,8 @@ Platform references: [Vite on Vercel](https://vercel.com/docs/frameworks/fronten
 | Docker cannot reach its engine | Start Docker Desktop or the Docker daemon |
 | Need fresh cached data | Remove the relevant JSON file from the configured cache directory and request that date again |
 
-## Assignment submission
-
-This README includes the live Vercel application link, file/directory details, startup instructions, and AI-use disclosure requested by the assignment.
-
-Before submission, verify Docker on a running engine, publish the anonymous-name public repository, and record the mandatory unlisted YouTube video. The maximum video length is 10 minutes, with a customer presentation and technical review, each including an initial overview of at most 5 minutes. Evaluation starts with the video, so it must be included.
-
-Verify every submitted link in incognito mode, then submit the repository, deployed application, video, and other requested details through the [assignment submission form](https://forms.cloud.microsoft/r/FTX6K2bbnU). The brief sets a maximum effort of 16 hours and no fixed submission deadline.
-
-A separate monthly dashboard and interpolation are not explicitly required by the brief. The implemented interface evaluates one delivery day at a time within the January purchasing-decision scope.
-
 ## AI assistance and source attribution
 
-**AI tools were used:** OpenAI Codex assisted with implementation, UI changes, testing, data inspection, and documentation. Forecast predictions and actuals come from Elexon, not AI. Synthetic data is retained only for test fixtures.
+**AI assistance:** I used OpenAI Codex to help develop and refine the prototype, implement and verify forecast-selection and error-calculation logic, improve the interface, and prepare tests and documentation. Forecasts and actual generation data are sourced from Elexon.
 
 Data source: [Elexon Insights](https://bmrs.elexon.co.uk), using the specified [FUELHH stream](https://bmrs.elexon.co.uk/api-documentation/endpoint/datasets/FUELHH/stream) and [WINDFOR stream](https://bmrs.elexon.co.uk/api-documentation/endpoint/datasets/WINDFOR/stream) datasets. See the [BMRS data licensing terms](https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/) for attribution and reuse conditions.
-

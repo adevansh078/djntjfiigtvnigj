@@ -11,6 +11,7 @@ Quick navigation: [Access](#access-the-project) · [Local setup](#run-locally) �
 | Access method | URL | Status |
 | --- | --- | --- |
 | Public application | **Pending deployment — add the verified Vercel or Heroku URL here before submission** | Not deployed yet |
+| Deployed backend documentation | [FastAPI API documentation](https://djntjfiigtvnigj.vercel.app/docs) | Backend deployed; frontend pending |
 | Local development | [http://localhost:5173](http://localhost:5173) | Requires frontend and backend servers |
 | Local Docker | [http://localhost:8080](http://localhost:8080) | Requires Docker Compose |
 | Backend API documentation | [http://localhost:8000/docs](http://localhost:8000/docs) | Requires backend server |
@@ -61,10 +62,10 @@ There is no database or authentication service. Synthetic data is retained only 
 
 ### Get the source code
 
-Replace YOUR_USERNAME and YOUR_ANONYMOUS_REPO with the published GitHub repository details. The repository URL is pending publication; these are placeholders, not a working clone URL.
+Clone the public GitHub repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_ANONYMOUS_REPO.git windwise-source
+git clone https://github.com/adevansh078/djntjfiigtvnigj.git windwise-source
 cd windwise-source
 cd wind-dashboard
 ```
@@ -365,6 +366,7 @@ wind-dashboard/
     package-lock.json             Locked frontend dependency tree
     index.html                    Browser entry document
     vite.config.js                React tooling and development API proxy
+    vercel.json                   Production API proxy and frontend deep-link routing
     src/
       main.jsx                    React entry point
       App.jsx                     Layout, controls, fetch, overview, CSV export
@@ -402,14 +404,14 @@ During development, real requests were checked for January 1 and January 31. Ind
 
 ## Deployment preparation
 
-The live URL is pending. Compose is the current runnable container setup, not a completed Vercel or Heroku deployment configuration.
+The FastAPI backend is deployed at https://djntjfiigtvnigj.vercel.app. Its health, documentation, OpenAPI schema, real-data dashboard request, and invalid-date handling were verified publicly. The public frontend URL is still pending. Docker Compose remains a separate local container setup.
 
-A suitable arrangement is a Vercel frontend and a separately hosted FastAPI backend, for example on Heroku:
+The chosen arrangement uses two Vercel projects connected to the same GitHub repository:
 
-1. Publish the code to the assignment's public GitHub repository with an anonymous name.
-2. Deploy FastAPI to the backend host. For Heroku, adapt startup to bind to 0.0.0.0 and the platform-provided PORT. The current Dockerfile binds fixed port 8000 and needs that adjustment. Heroku does not run this Compose configuration as a two-service deployment.
+1. Backend project root: wind-dashboard/backend. Use the FastAPI framework preset and set ELEXON_CACHE_DIR=/tmp/windwise-elexon. Vercel runs the FastAPI application through its Python runtime, not the Dockerfile or Compose. The temporary cache is disposable and not shared between instances.
+2. Backend production URL: https://djntjfiigtvnigj.vercel.app. Verify /api/health, /docs, and a real /api/dashboard request after backend changes.
 3. For Vercel, select frontend/ as project root, npm ci for installation, npm run build for building, and dist as output.
-4. Add production routing: forward /api/:path* to the deployed backend's /api/:path*, then fall back to index.html for frontend deep links. Keep the API rule ahead of the frontend fallback.
+4. The committed frontend/vercel.json forwards /api/:path* to the deployed backend and falls back to index.html for frontend deep links. The API rule precedes the fallback. Update this file if the backend production domain changes.
 5. Keep browser API calls same-origin through that proxy. Direct cross-origin backend calls would require frontend configuration and backend CORS support, neither of which is currently implemented.
 6. Configure a writable cache directory. On ephemeral storage, caches are disposable; persistence is an optimization.
 7. Verify overview, direct calculations links, date/cutoff changes, tooltips, CSV export, and a cold uncached request.

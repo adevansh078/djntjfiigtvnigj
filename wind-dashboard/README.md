@@ -10,8 +10,8 @@ Quick navigation: [Access](#access-the-project) · [Local setup](#run-locally) �
 
 | Access method | URL | Status |
 | --- | --- | --- |
-| Public application | **Pending deployment — add the verified Vercel or Heroku URL here before submission** | Not deployed yet |
-| Deployed backend documentation | [FastAPI API documentation](https://djntjfiigtvnigj.vercel.app/docs) | Backend deployed; frontend pending |
+| Public application | [Open Windwise](https://djntjfiigtvnigj-l3iv.vercel.app) | Deployed on Vercel |
+| Deployed backend documentation | [FastAPI API documentation](https://djntjfiigtvnigj.vercel.app/docs) | Deployed on Vercel |
 | Local development | [http://localhost:5173](http://localhost:5173) | Requires frontend and backend servers |
 | Local Docker | [http://localhost:8080](http://localhost:8080) | Requires Docker Compose |
 | Backend API documentation | [http://localhost:8000/docs](http://localhost:8000/docs) | Requires backend server |
@@ -404,7 +404,7 @@ During development, real requests were checked for January 1 and January 31. Ind
 
 ## Deployment preparation
 
-The FastAPI backend is deployed at https://djntjfiigtvnigj.vercel.app. Its health, documentation, OpenAPI schema, real-data dashboard request, and invalid-date handling were verified publicly. The public frontend URL is still pending. Docker Compose remains a separate local container setup.
+The frontend is deployed at https://djntjfiigtvnigj-l3iv.vercel.app and the FastAPI backend at https://djntjfiigtvnigj.vercel.app. Public checks verified frontend HTML and JavaScript/CSS assets, direct calculations-page access, the API proxy, and real-data responses including the January 31 delivery boundary. Backend documentation, OpenAPI, and invalid-date handling were also verified. These HTTP checks do not replace a complete interactive browser acceptance pass. Docker Compose remains a separate local container setup.
 
 The chosen arrangement uses two Vercel projects connected to the same GitHub repository:
 
@@ -415,7 +415,7 @@ The chosen arrangement uses two Vercel projects connected to the same GitHub rep
 5. Keep browser API calls same-origin through that proxy. Direct cross-origin backend calls would require frontend configuration and backend CORS support, neither of which is currently implemented.
 6. Configure a writable cache directory. On ephemeral storage, caches are disposable; persistence is an optimization.
 7. Verify overview, direct calculations links, date/cutoff changes, tooltips, CSV export, and a cold uncached request.
-8. Replace the pending public URL at the top of this README with the verified HTTPS app link. Add the deployed API docs link if publicly exposed.
+8. Keep the access table and frontend API proxy updated if either production domain changes. Test submitted production URLs without an authenticated Vercel session.
 
 Platform references: [Vite on Vercel](https://vercel.com/docs/frameworks/frontend/vite), [Vercel rewrites](https://vercel.com/docs/routing/rewrites), and [Heroku Container Registry and Runtime](https://devcenter.heroku.com/articles/container-registry-and-runtime).
 
@@ -436,7 +436,7 @@ Platform references: [Vite on Vercel](https://vercel.com/docs/frameworks/fronten
 
 ## Assignment submission
 
-This README includes file/directory details and startup instructions. Add the live Vercel/Heroku application link after deployment.
+This README includes the live Vercel application link, file/directory details, startup instructions, and AI-use disclosure requested by the assignment.
 
 Before submission, verify Docker on a running engine, publish the anonymous-name public repository, and record the mandatory unlisted YouTube video. The maximum video length is 10 minutes, with a customer presentation and technical review, each including an initial overview of at most 5 minutes. Evaluation starts with the video, so it must be included.
 
